@@ -342,7 +342,7 @@ with tab2:
 
 
         senior_citizen = st.selectbox(
-            "Senior Citizen",
+            "Is the customer a senior citizen?",
             [
                 0,
                 1
@@ -351,7 +351,7 @@ with tab2:
 
 
         partner = st.selectbox(
-            "Partner",
+            "Does the customer have a partner?",
             [
                 "Yes",
                 "No"
@@ -360,7 +360,7 @@ with tab2:
 
 
         dependents = st.selectbox(
-            "Dependents",
+            "Does the customer have dependents?",
             [
                 "Yes",
                 "No"
@@ -371,7 +371,7 @@ with tab2:
     with col2:
 
         tenure = st.number_input(
-            "Tenure (months)",
+            "Customer tenure (months)",
             min_value=0,
             max_value=100,
             value=12
@@ -379,7 +379,7 @@ with tab2:
 
 
         phone_service = st.selectbox(
-            "Phone Service",
+            "Does the customer use phone service?",
             [
                 "Yes",
                 "No"
@@ -388,7 +388,7 @@ with tab2:
 
 
         multiple_lines = st.selectbox(
-            "Multiple Lines",
+            "Does the customer have multiple lines?",
             [
                 "Yes",
                 "No",
@@ -398,7 +398,7 @@ with tab2:
 
 
         internet_service = st.selectbox(
-            "Internet Service",
+            "Does the customer use internet service?",
             [
                 "DSL",
                 "Fiber optic",
@@ -410,7 +410,7 @@ with tab2:
     with col3:
 
         online_security = st.selectbox(
-            "Online Security",
+            "Does the customer have online security?",
             [
                 "Yes",
                 "No",
@@ -420,7 +420,7 @@ with tab2:
 
 
         online_backup = st.selectbox(
-            "Online Backup",
+            "Does the customer have online backup?",
             [
                 "Yes",
                 "No",
@@ -430,7 +430,7 @@ with tab2:
 
 
         device_protection = st.selectbox(
-            "Device Protection",
+            "Does the customer have device protection?",
             [
                 "Yes",
                 "No",
@@ -440,7 +440,7 @@ with tab2:
 
 
         tech_support = st.selectbox(
-            "Tech Support",
+            "Does the customer have tech support?",
             [
                 "Yes",
                 "No",
@@ -464,7 +464,7 @@ with tab2:
     with col4:
 
         streaming_tv = st.selectbox(
-            "Streaming TV",
+            "Does the customer use streaming TV?",
             [
                 "Yes",
                 "No",
@@ -476,7 +476,7 @@ with tab2:
     with col5:
 
         streaming_movies = st.selectbox(
-            "Streaming Movies",
+            "Does the customer use streaming movies?",
             [
                 "Yes",
                 "No",
@@ -512,7 +512,7 @@ with tab2:
     with col7:
 
         paperless_billing = st.selectbox(
-            "Paperless Billing",
+            "Does the customer use paperless billing?",
             [
                 "Yes",
                 "No"
@@ -523,7 +523,7 @@ with tab2:
     with col8:
 
         payment_method = st.selectbox(
-            "Payment Method",
+            "Payment method",
             [
                 "Electronic check",
                 "Mailed check",
@@ -536,7 +536,7 @@ with tab2:
     with col9:
 
         monthly_charges = st.number_input(
-            "Monthly Charges",
+            "Monthly charges",
             min_value=0.0,
             max_value=200.0,
             value=70.0
@@ -544,7 +544,7 @@ with tab2:
 
 
     total_charges = st.number_input(
-        "Total Charges",
+        "Total charges",
         min_value=0.0,
         max_value=10000.0,
         value=840.0
@@ -664,7 +664,7 @@ with tab2:
         # ----------------------------------------------------
 
         st.subheader(
-            "Prediction Result"
+            "🔮 Customer Churn Prediction Result"
         )
 
 
@@ -717,6 +717,52 @@ with tab2:
 
         st.progress(
             float(probability)
+        )
+
+        # ----------------------------------------------------
+        # USER-FRIENDLY RESULT INTERPRETATION
+        # ----------------------------------------------------
+
+        st.subheader(
+            "💡 Result Interpretation"
+        )
+
+        if probability >= 0.70:
+
+            st.error(
+                """
+                **High Churn Risk:** This customer has a relatively
+                high predicted likelihood of churn. The business may
+                consider reviewing the customer's service experience
+                and appropriate retention options.
+                """
+            )
+
+        elif probability >= 0.40:
+
+            st.warning(
+                """
+                **Medium Churn Risk:** This customer has a moderate
+                predicted likelihood of churn. The customer may
+                benefit from closer monitoring and appropriate
+                engagement.
+                """
+            )
+
+        else:
+
+            st.success(
+                """
+                **Low Churn Risk:** This customer has a relatively
+                low predicted likelihood of churn based on the
+                information provided.
+                """
+            )
+
+        st.caption(
+            "This prediction is intended to support decision-making "
+            "and should not be treated as a guarantee of future "
+            "customer behaviour."
         )
 
 
